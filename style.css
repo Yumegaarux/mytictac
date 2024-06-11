@@ -1,0 +1,17 @@
+.cell{
+    width: 7em;
+    height: 7em;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+#gameCell{
+    display: grid;
+    grid-template-columns: repeat(3, 7.5em);
+    grid-template-rows: repeat(3, 7.5em);
+}
+
+#gameContainer{
+    display: flex;
+    justify-content: center;
+}
