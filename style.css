@@ -1,7 +1,10 @@
 .cell{
-    width: 7em;
-    height: 7em;
+    width: 2.35em;
+    height: 2.35em;
     border: 2px solid black;
+    text-align: center;
+    font-size: 3em;
+    font-family: Arial;
     cursor: pointer;
 }
 
