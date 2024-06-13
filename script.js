@@ -1,26 +1,32 @@
 let turns = 1;
 let p1checkedTiles = [];
 let p2checkedTiles = [];
-function play(selectedTile, checkTiles){
-    if (checkTiles.indexOf(selectedTile) == -1){
-        checkTiles.push(selectedTile);
-        if (turns % 2 != 0){
-            document.getElementById(selectedTile).textContent = 'X';
-            turns++;
-        }
-        else{
-            document.getElementById(selectedTile).textContent = 'O';
-            turns++;
-        }
+let gameTiles = [];
+
+function play(selectedTile, useTiles){
+    let usedTiles = useTiles();
+    if (gameTiles.indexOf(selectedTile) === -1){
+        pushTiles(gameTiles, usedTiles, selectedTile);
+        defSymbol(selectedTile);
+        turns++;
     }
     else{
         alert("That tile is already used!");
     }
-
-
+    
 }
 
-function checkTiles(){
+function defSymbol(selectedTile){
+    turns & 2 != 0 ? document.getElementById(selectedTile).textContent = 'X' : 
+    document.getElementById(selectedTile).textContent = 'O'; 
+}
+
+function pushTiles(gameTiles, usedTiles, selectedTile){
+    gameTiles.push(selectedTile);
+    usedTiles.push(selectedTile)
+}
+
+function useTiles(){
     if (turns % 2 != 0){
         return p1checkedTiles;
     }
@@ -29,3 +35,6 @@ function checkTiles(){
     }
 }
 
+function checkWin(){
+    
+}
