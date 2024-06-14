@@ -1,4 +1,5 @@
 let turns = 1;
+let isRunning = true;
 let p1CheckedTiles = [];
 let p2CheckedTiles = [];
 let gameTiles = [];
@@ -9,19 +10,24 @@ const winningTiles = [
 ]
 
 function play(selectedTile, useTiles){
-    let usedTiles = useTiles();
-    if (gameTiles.indexOf(selectedTile) === -1){
-        pushTiles(gameTiles, usedTiles, selectedTile);
-        defSymbol(selectedTile);
+    if (isRunning){
+        let usedTiles = useTiles();
+        if (gameTiles.indexOf(selectedTile) === -1){
+            pushTiles(gameTiles, usedTiles, selectedTile);
+            defSymbol(selectedTile);
+        }
+        else{
+            alert("That tile is already used!");
+        }
+        
+        if (turns >= 5){
+            checkWin();
+        }
+        turns++;
     }
     else{
-        alert("That tile is already used!");
+        
     }
-    
-    if (turns >= 5){
-        checkWin();
-    }
-    turns++;
 }
 
 function defSymbol(selectedTile){
@@ -43,15 +49,14 @@ function useTiles(){
     }
 }
 
-function checkWin(){
-    let i;
-    if (turns % 2 != 0){
-        for (let tiles of winningTiles){
-            console.log(tiles.includes(p1CheckedTiles.indexOf(i)));
-            i++;
+function checkWin() {
+    let playerTiles = turns % 2 != 0 ? p1CheckedTiles : p2CheckedTiles;
+    
+    for (let combination of winningTiles) {
+        if (combination.every(tile => playerTiles.includes(tile))) {
+            alert(`Player ${turns % 2 != 0 ? '1' : '2'} wins!`);
+            isRunning = false;
+            return;
         }
-    }
-    else{
-        
     }
 }
