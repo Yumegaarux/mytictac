@@ -1,23 +1,24 @@
-.cell{
-    width: 2em;
-    height: 2em;
+.bigCell{
+    width: 5em;
+    height: 5em;
     border: 2px solid black;
     box-shadow: 0 0 0 2px;
     text-align: center;
-    font-size: 3em;
-    line-height: 2em;
+    font-size: 50px;
+    line-height: 75px;
     font-family: Arial;
     cursor: pointer;
+}
+
+
+#gameContainer{
+    text-align: center;
 }
 
 #gameCell{
     display: grid;
     grid-template-columns: repeat(3, auto);
+    width: 225px;
     margin: auto;
-    text-align: center;
 }
 
-#gameContainer{
-    width: 100px;
-    justify-content: center;
-}

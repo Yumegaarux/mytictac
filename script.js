@@ -9,6 +9,19 @@ const winningTiles = [
     [2 , 5 , 8]
 ]
 
+for(let i = 0; i <= 9 ; i++){
+    const bigCell = document.createElement("div");
+    bigCell.className = 'bigCell';
+    bigCell.id = i;
+
+    for(let j = 0; j <= 9 ; j++){
+        const smallCell = document.createElement("div");
+        smallCell.className = 'smallCell';
+        smallCell.id = j;
+    }
+}
+
+
 function play(selectedTile, useTiles){
     if (isRunning){
         let usedTiles = useTiles();
@@ -20,13 +33,10 @@ function play(selectedTile, useTiles){
             alert("That tile is already used!");
         }
         
-        if (turns >= 5){
+        if (turns >= 5){ 
             checkWin();
         }
         turns++;
-    }
-    else{
-        
     }
 }
 
