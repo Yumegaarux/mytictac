@@ -1,15 +1,17 @@
 let turns = 1;
 let isRunning = true;
+let isSelected = false;
 let p1CheckedTiles = [];
 let p2CheckedTiles = [];
 let gameTiles = [];
+
 const winningTiles = [
     [1 , 2 , 3] , [1 , 4 , 7] , [7 , 8 , 9],
     [9 , 3 , 6] , [1 , 5 , 9] , [3 , 5 , 7],
     [2 , 5 , 8]
 ]
 
-for(let i = 0; i <= 9 ; i++){
+for(let i = 0; i < 9 ; i++){
     const bigCell = document.createElement("div");
     bigCell.className = 'bigCell';
     bigCell.id = i;
@@ -17,12 +19,27 @@ for(let i = 0; i <= 9 ; i++){
     for(let j = 0; j <= 9 ; j++){
         const smallCell = document.createElement("div");
         smallCell.className = 'smallCell';
-        smallCell.id = j;
+        smallCell.id = `${i}-${j}`;
+        bigCell.appendChild(smallCell);
+    }
+    document.getElementById("gameContainer").appendChild(bigCell);
+}
+
+function selectBigCell(bigCell){
+    isSelected = true;
+}
+
+function playSmallCells(bigCell, selectedTile){
+    if (isSelected){
+        let usedTiles = useTiles();
+        if (gameTiles.indexOf(selectedTile) === -1){
+            pushTiles(gameTiles, usedTiles, selectedTile);
+            defSymbol(selectedTile);
+        }
     }
 }
 
-
-function play(selectedTile, useTiles){
+function play(bigCell, useTiles){
     if (isRunning){
         let usedTiles = useTiles();
         if (gameTiles.indexOf(selectedTile) === -1){
